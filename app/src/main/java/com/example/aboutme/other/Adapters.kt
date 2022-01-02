@@ -41,10 +41,12 @@ class Adapters(
                 object : EditPersonInfoListener {
 
                     override fun onAddButtonClicked(item1: Person_Details, item: Person_Details) {
-                        viewModel.delete(item1)
+                        viewModel.delete(curPersonDetails)
                         viewModel.upsert(item)
                     }
                 }).show()
+            if(holder.itemView.textView.text.isEmpty()){holder.itemView.textView.text = "Age:${curPersonDetails.age}\nAddress:${curPersonDetails.address}\nBatch:${curPersonDetails.education}\nPhone Number:${curPersonDetails.ph_number}"}
+            else{holder.itemView.textView.text=""}
 
         }
     }
