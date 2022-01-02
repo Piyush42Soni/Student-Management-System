@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.aboutme.Main_Activities.MainViewModel
+import com.example.aboutme.Main_Activities.*
 import com.example.aboutme.R
 import com.example.aboutme.data.Person_Details
 import kotlinx.android.synthetic.main.personviewmodel.view.*
 
 class Adapters(
+    val activity: MainActivity,
     var items: List<Person_Details>,
     private val viewModel: MainViewModel
 ): RecyclerView.Adapter<Adapters.PersonViewHolder>() {
@@ -27,13 +28,20 @@ class Adapters(
         val curPersonDetails = items[position]
 
         holder.itemView.tvName.text = curPersonDetails.name
-        holder.itemView.tvAge.text = "${curPersonDetails.age}"
-        holder.itemView.tvCgpa.text="${curPersonDetails.cgpa}"
-        holder.itemView.tvEducation.text=curPersonDetails.education
-        holder.itemView.tvPhone.text=curPersonDetails.ph_number
-        holder.itemView.tvAddress.text=curPersonDetails.address
-        holder.itemView.button.setOnClickListener {
+        holder.itemView.Button.setOnClickListener {
             viewModel.delete(curPersonDetails)
+        }
+        holder.itemView.imageButton2.setOnClickListener{
+            EditPersonInfoDialog(curPersonDetails,
+                activity,
+                object : EditPersonInfoListener {
+
+                    override fun onAddButtonClicked(item1: Person_Details, item: Person_Details) {
+                        viewModel.delete(item1)
+                        viewModel.upsert(item)
+                    }
+                }).show()
+
         }
     }
 

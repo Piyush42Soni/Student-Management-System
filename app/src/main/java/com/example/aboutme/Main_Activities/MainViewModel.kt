@@ -15,6 +15,7 @@ class MainViewModel(private val repository:Person_Repo):ViewModel(){
 
     fun delete(item: Person_Details) = GlobalScope.launch(Dispatchers.IO) {
         repository.delete(item)
+
     }
 
     fun getAllPersonsInfo() = repository.getAllPersonsInfo()

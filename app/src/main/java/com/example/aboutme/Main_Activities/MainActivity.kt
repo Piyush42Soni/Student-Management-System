@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
             viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
-            val adapter = Adapters(listOf(), viewModel)
+            val adapter = Adapters(this,listOf(), viewModel)
             rvPersonDetails.layoutManager = LinearLayoutManager(this)
             rvPersonDetails.adapter = adapter
             viewModel.getAllPersonsInfo().observe(this, Observer {
