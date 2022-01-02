@@ -28,6 +28,10 @@ class Adapters(
         val curPersonDetails = items[position]
 
         holder.itemView.tvName.text = curPersonDetails.name
+        holder.itemView.imageButton.setOnClickListener{
+            if(holder.itemView.textView.text.isEmpty()){holder.itemView.textView.text = "Age:${curPersonDetails.age}\nAddress:${curPersonDetails.address}\nBatch:${curPersonDetails.education}\nPhone Number:${curPersonDetails.ph_number}"}
+            else{holder.itemView.textView.text=""}
+        }
         holder.itemView.Button.setOnClickListener {
             viewModel.delete(curPersonDetails)
         }
