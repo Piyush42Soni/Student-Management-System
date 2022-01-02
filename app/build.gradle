@@ -13,7 +13,9 @@ android {
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
-
+    buildFeatures {
+        dataBinding true
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
